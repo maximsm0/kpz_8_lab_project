@@ -5,7 +5,8 @@ import { Route } from '../routes/posts/$id';
 import '../styles/PostDetailPage.css';
 
 const PostDetailPage = () => {
-	const { params } = useMatch(Route);
+	// Приводим к типу с параметром id
+	const { params } = useMatch({ from: Route }) as { params: { id: string } };
 	const id = params.id;
 
 	const [post, setPost] = useState<any | null>(null);
@@ -28,8 +29,10 @@ const PostDetailPage = () => {
 		setFormData(prev => ({ ...prev, [name]: value }));
 	};
 
+	const numericId = Number(id);
+
 	const handleUpdate = async () => {
-		await updateEntity(id, formData);
+		await updateEntity(numericId, formData);
 		const updatedPost = await getEntityById(id);
 		setPost(updatedPost);
 		setIsEditing(false);

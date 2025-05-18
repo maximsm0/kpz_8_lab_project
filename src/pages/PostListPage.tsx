@@ -15,9 +15,10 @@ const PostListPage = () => {
 		fetchPosts();
 	}, []);
 
-	const handleDelete = (id: number) => {
+	const handleDelete = (id: string) => {
 		setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
 	};
+
 
 	return (
 		<div className="post-list-page">

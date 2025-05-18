@@ -8,12 +8,12 @@ export interface Post {
 
 export const getAllEntities = async (): Promise<Post[]> => {
 	const res = await api.get<Post[]>('/posts');
-	return res.data.data;
+	return res.data; // убрал .data
 };
 
 export const getEntityById = async (id: string): Promise<Post | undefined> => {
 	const res = await api.get<Post>(`/posts/${id}`);
-	return res.data.data;
+	return res.data; // убрал .data
 };
 
 export const createEntity = async (data: { title: string; content: string }): Promise<Post> => {

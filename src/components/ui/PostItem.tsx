@@ -22,8 +22,10 @@ const PostItem: React.FC<PostItemProps> = ({ post, onDelete }) => {
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
 
+	
 	const handleConfirmDelete = async () => {
-		await deleteEntity(post.id);
+		const numeric_id: number = Number(post.id);
+		await deleteEntity(numeric_id);
 		onDelete(post.id);
 		closeModal();
 	};
